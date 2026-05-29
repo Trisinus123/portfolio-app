@@ -111,20 +111,34 @@ function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             {projects.map((p, i) => (
               <div key={p.id}
-                className="group bg-white/[0.03] border border-white/[0.07] rounded-2xl p-7 hover:border-violet-500/40 hover:bg-white/[0.05] transition-all hover:-translate-y-1.5 cursor-default">
-                <div className="w-11 h-11 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-6 text-xl group-hover:scale-110 transition-transform">
-                  {['🌐','✈️','📊','📦','🔐','🚀','💡','⚡'][i % 8]}
-                </div>
-                <h3 className="font-bold text-base mb-2 group-hover:text-violet-300 transition-colors">{p.title}</h3>
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {p.techStack.map(t => (
-                    <span key={t} className="bg-violet-500/10 text-violet-400 text-[10px] px-2 py-0.5 rounded-full">{t}</span>
-                  ))}
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed mb-5">{p.description}</p>
-                <div className="flex gap-4 pt-2 border-t border-white/[0.05]">
-                  {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" className="text-violet-400 text-xs hover:underline">Live →</a>}
-                  {p.githubUrl && <a href={p.githubUrl} target="_blank" rel="noreferrer" className="text-gray-500 text-xs hover:text-white transition-colors">GitHub →</a>}
+                className="group bg-white/[0.03] border border-white/[0.07] rounded-2xl overflow-hidden hover:border-violet-500/40 hover:bg-white/[0.05] transition-all hover:-translate-y-1.5 cursor-default">
+
+                {/* IMAGE */}
+                {p.imageUrl ? (
+                  <div className="h-48 overflow-hidden">
+                    <img src={p.imageUrl} alt={p.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                ) : (
+                  <div className="h-48 flex items-center justify-center text-4xl"
+                    style={{ background: ['linear-gradient(135deg,#1a0533,#2d1052)','linear-gradient(135deg,#0a1f2e,#0c3a5a)','linear-gradient(135deg,#0d2818,#0f4a2a)','linear-gradient(135deg,#2e1a0a,#5a3010)','linear-gradient(135deg,#1a0a2e,#351060)','linear-gradient(135deg,#1a1a0a,#3a3a10)'][i % 6] }}>
+                    {['🌐','✈️','📊','📦','🔐','🚀','💡','⚡'][i % 8]}
+                  </div>
+                )}
+
+                {/* BODY */}
+                <div className="p-7">
+                  <h3 className="font-bold text-base mb-2 group-hover:text-violet-300 transition-colors">{p.title}</h3>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {p.techStack.map(t => (
+                      <span key={t} className="bg-violet-500/10 text-violet-400 text-[10px] px-2 py-0.5 rounded-full">{t}</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{p.description}</p>
+                  <div className="flex gap-4 pt-2 border-t border-white/[0.05]">
+                    {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" className="text-violet-400 text-xs hover:underline">Live →</a>}
+                    {p.githubUrl && <a href={p.githubUrl} target="_blank" rel="noreferrer" className="text-gray-500 text-xs hover:text-white transition-colors">GitHub →</a>}
+                  </div>
                 </div>
               </div>
             ))}
