@@ -1,0 +1,48 @@
+# testing.yml
+# Simpan file ini di: .github/workflows/testing.yml
+
+name: Testing Pipeline 🧪
+
+on:
+  push:
+    branches: [main]       # Jalan setiap push ke main
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  testing:
+    name: 🧪 Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Langkah 1: Ambil kode dari GitHub
+      - name: 📥 Checkout kode
+        uses: actions/checkout@v3
+
+      # Langkah 2: Setup Node.js
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # Langkah 3: Install dependencies root
+      - name: 📦 Install dependencies
+        run: npm install
+
+      # Langkah 4: Install dependencies client
+      - name: 📦 Install client dependencies
+        run: cd client && npm install
+
+      # Langkah 5: Install dependencies server
+      - name: 📦 Install server dependencies
+        run: cd server && npm install
+
+      # Langkah 6: Build client (cek apakah bisa di-build)
+      - name: 🔨 Build client
+        run: cd client && npm run build
+
+      # Langkah 7: Tampilkan hasil
+      - name: ✅ Selesai
+        run: echo "Semua tahap testing berhasil!"
