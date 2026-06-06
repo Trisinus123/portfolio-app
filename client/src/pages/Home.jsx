@@ -156,7 +156,7 @@ function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                role: 'IT Development',
+                role: 'Full Stack Developer',
                 company: 'Airnav Indonesia',
                 period: 'Oct 2025 – Apr 2026',
                 color: 'from-blue-500/10 to-cyan-500/10',
